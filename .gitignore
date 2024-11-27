@@ -10,3 +10,16 @@
 *.pdf
 *.pyc
 *.synctex.gz
+
+# VSCode uporabniške nastavitve
+.vscode/
+
+# MacOS
+__MACOSX
+.DS_Store
+
+# Windows
+thumbs.db
+
+# Python
+__pycache__
