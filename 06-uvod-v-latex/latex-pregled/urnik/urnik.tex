@@ -1,10 +1,12 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 10pt]{article}
 
 \usepackage[utf8]{inputenc}
 
 \usepackage[slovene]{babel}
 
-\usepackage[T1]{fontenc} 
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
 % NALOGA 1
 % Vključite pakete za podporo slovenščini,
 % prepoznavo vhodnega kodiranja `utf8` in izhodnega kodiranja `T1`.
@@ -20,7 +22,7 @@
 
 \title{Izdelava urnikov}
 \author{Nejc Širovnik}
-\date{14. 10. 2019}
+\date{14.\ 10.\ 2019}
 \maketitle
 % začetek povzetka
 \begin{abstract}
@@ -39,7 +41,7 @@ prav začel? Zakaj nam vsaj v petek niso malo popustili? Kdo je sploh lahko izde
 takšen urnik?
 
 To so vprašanja, na katera seveda nikoli nismo dobili odgovora, čeprav je le-ta na zadnje
-vprašanje več kot očiten - izdelala ga je oseba, ki so ji to delo naprtili. Naprtili je
+vprašanje več kot očiten -- izdelala ga je oseba, ki so ji to delo naprtili. Naprtili je
 zelo primerna beseda, saj gre za zahtevno opravilo, ki izdelovalcu urnikov nemalokrat
 pusti ogromno sivih las. Ne bi se rad postavil v kožo ubožca, ki konča z izdelavo urnika,
 nakar ves zgrožen ugotovi, da je spregledal prekrivanje dveh šolskih ur, kar pomeni, da
@@ -93,7 +95,7 @@ matematika.
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
-%
+\noindent 
 Hierarhija značk omogoča enostavno vnašanje podatkov, hkrati pa poskrbi za preglednost.
 Še enostavnejše je dostopanje do posameznih podatkov, saj večina programskih jezikov že
 vsebuje metode za delo z XML datotekami.
@@ -108,36 +110,40 @@ katere podatke naj vsebujejo.
 % Pri prvem seznamu se vsi elementi začnejo z besedo `Razred`, zato lahko več 
 % kurzorjev na pravih mestih dobite enostavno s pomočjo iskanja.
 
-% V besedilu je definiranih nekaj novih pojmov - zapisani so med poševnici. 
+% V besedilu je definiranih nekaj novih pojmov -- zapisani so med poševnici. 
 % Da bodo prikazani ležeče, uporabite ukaz `\emph`. 
-% Kot pri razdelkih si pomagajte z orodjem _Replace_ in regularnimi izrazi - 
+% Kot pri razdelkih si pomagajte z orodjem _Replace_ in regularnimi izrazi -- 
 % prav vam bo prišel isti vzorec za poljuben niz znakov, le da bo zdaj obdan z dvema poševnicama.
+\begin{itemize}
 
-   \item Razred /Profesor/ vsebuje osebne podatke profesorja (ime in priimek) ter
+   \item Razred \emph{Profesor} vsebuje osebne podatke profesorja (ime in priimek) ter
    podatke o predmetih, ki jih predava. Hkrati moramo za vsako uro v tednu vedeti, če
    je profesor takrat že zaseden, da mu slučajno ne bi dodelili dveh predavanj v istem
    časovnem terminu. To je najlažje preverjati s pomočjo tabele zasedenosti, ki je
    podrobneje opisana na koncu poglavja.
 
-   \item Razred /Skupina/ predstavlja skupino študentov. Kot podatke torej potrebujemo
+   \item Razred \emph{Skupina} predstavlja skupino študentov. Kot podatke torej potrebujemo
    smer skupine (npr. pedagoška matematika) ter število študentov v njej. Podobno kot pri
    profesorjih, tudi tukaj potrebujemo tabelo zasedenosti.
 
-   \item Razred /Predavalnica/ nosi podatke o kapaciteti predavalnice, njeno oznako
+   \item Razred \emph{Predavalnica} nosi podatke o kapaciteti predavalnice, njeno oznako
    ter podatke o zasedenosti, ki so predstavljeni s tabelo.
 
-   \item Razred /Predmet/ vsebuje podatke o posameznih predmetih. Kot podatke tega
+   \item Razred \emph{Predmet} vsebuje podatke o posameznih predmetih. Kot podatke tega
    objekta je smiselno navesti ime predmeta ter tedensko število ur njegove izvedbe.
    Zanima nas tudi, katerim skupinam je predmet namenjen, ter v katerem semestru se bo
    predaval.
-
+\end{itemize}
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Kar pri treh razredih je kot podatek navedena tabela zasedenosti, zato si jo podrobneje
 oglejmo. Vsako tabelo določata njena velikost ter tip vrednosti. Naslednji izračun nam
 poda velikost tabele:
-??
+\begin{displaymath}
+   \text{velikostTabele}=\text{številoUrNaDan}\cdot\text{številoDelonihDni}
+\end{displaymath}
 Če bi predpostavili, da študijski dan traja od sedme ure zjutraj do osmih zvečer in da
 imamo pet delovnih dni, je velikost naše tabele 65 polj. Velikost te tabele torej pove,
 koliko ur na teden obravnavamo. Ker se šolski tedni periodično ponavljajo, je seveda
@@ -149,37 +155,40 @@ dovolj, če podamo zasedenost le za en teden.
 Tip vrednosti tabele ni striktno določen. Tako bi nekateri programerji uporabili
 celoštevilsko tabelo, kjer bi vrednost 1 pomenila, da je oseba zasedena, vrednost 0
 pa bi predstavljala njeno dosegljivost. Podobno bi postopali, če bi izbrali logični
-tip (npr. bool v C++), kjer bi vrednost true predstavljala
-dosegljivost, false pa zasedenost.
+tip (npr. \texttt{bool} v C++), kjer bi vrednost \texttt{true} predstavljala
+dosegljivost, \texttt{false} pa zasedenost.
 
-Omejitve % podrazdelek
+\subsection{Omejitve} % podrazdelek
 
 Programa za izdelavo (nekakovostnega) urnika načeloma ni težko narediti. Potrebujemo
 le metodo, ki naključno prireja termine posameznim predmetom. Težava pri takšnem postopanju
 je, da pri naključnem vstavljanju nismo upoštevali nobenih omejitev, prav zadoščanje omejitvam
 pa je tisto, kar odlikuje dober urnik.
 
-Stroge omejitve % podpodrazdelek
+\subsection{Stroge omejitve} % podpodrazdelek
 
 Verjetno še niste videli profesorja, ki vsakih pet minut teče iz ene predavalnice v drugo,
 ker so mu izdelalovalci urnika dodelili dve predavanji v istem časovnem terminu. Razlog
-je preprost - vsak urnik mora biti izdelan tako, da zadošča vsem strogim omejitvam.
+je preprost -- vsak urnik mora biti izdelan tako, da zadošča vsem strogim omejitvam.
 Poglejmo si nekaj omejitev, ki jih urnik ne sme kršiti:
 
 % Vsaka od vrstic v okolju `itemize` je en element naštevanja.
 % začetek okolja itemize
-   V urnik moramo razdeliti vse ure vseh predmetov.
-   Noben profesor ne sme imeti več predavanj hkrati.
-   Nobena skupina ne sme imeti več predavanj hkrati.
-   Nobena predavalnica ne sme biti dodeljena večim predavanjem hkrati.
-   Predavalnica mora imeti zadostno kapaciteto.
-   Predavanja posebne vrste (npr. vaje iz računalništva) se morajo izvajati v ustrezni predavalnici.
-   Urnik mora zadoščati zastavljenemu časovnemu okvirju (npr. od sedmih zjutraj do osmih zvečer).
+\begin{itemize} 
+   \item V urnik moramo razdeliti vse ure vseh predmetov.
+   \item Noben profesor ne sme imeti več predavanj hkrati.
+   \item Nobena skupina ne sme imeti več predavanj hkrati.
+   \item Nobena predavalnica ne sme biti dodeljena večim predavanjem hkrati.
+   \item Predavalnica mora imeti zadostno kapaciteto.
+   \item Predavanja posebne vrste (npr. vaje iz računalništva) se morajo izvajati v ustrezni predavalnici.
+   \item Urnik mora zadoščati zastavljenemu časovnemu okvirju (npr. od sedmih zjutraj do osmih zvečer).
+\end{itemize}
 % konec okolja itemize
 
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Urnik, ki zadošča vsem strogim omejitvam, imenujemo zadosten urnik. Zadostni urnik tako ne
 krši nobenega izmed zgoraj naštetih načel, a še zdaleč ne ustreza merilom kakovostnega urnika.
 
@@ -189,7 +198,7 @@ dodeljevanje t.i. prekrivanj. Če želi algoritem dodeliti predavanje določeni 
 mora najprej v tabeli zasedenosti preveriti, če je v tistem terminu le-ta še na voljo,
 sicer se vstavljanje ne izvede.
 
-Šibke omejitve % podpodrazdelek
+\subsubsection{Šibke omejitve} % podpodrazdelek
 
 V splošnem ne zahtevamo, da urnik zadošča vsem šibkim omejitvam, ker je to praktično neizvedljivo.
 Resda pa so prav šibke omejitve tiste, ki določajo kakovost urnika, in dober algoritem bo
@@ -197,17 +206,20 @@ poskrbel, da se bo zadostilo večini le-teh. Naštejmo nekaj izmed njih:
 
 % Vsaka od vrstic v okolju `itemize` je en element naštevanja.
 % začetek okolja itemize
-   Urnik naj vsebuje čim manj prostih ur za profesorje in študente.
-   Študentje naj se čim manj selijo iz predavalnic.
-   Predmet z veliko urami naj bo enakomerno porazdeljen čez celotno periodo (teden).
-   Predavanja naj se izvajajo ob urah, ki so najugodnejše za poučevanje.
-   V petek naj se študentom dodeli čim manj predavanj.
-   Študentom se naj v času kosila dodeli prosta ura.
+\begin{itemize}
+   \item Urnik naj vsebuje čim manj prostih ur za profesorje in študente.
+   \item Študentje naj se čim manj selijo iz predavalnic.
+   \item Predmet z veliko urami naj bo enakomerno porazdeljen čez celotno periodo (teden).
+   \item Predavanja naj se izvajajo ob urah, ki so najugodnejše za poučevanje.
+   \item V petek naj se študentom dodeli čim manj predavanj.
+   \item Študentom se naj v času kosila dodeli prosta ura.
+\end{itemize}
 % konec okolja itemize
 
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Obstaja še mnogo drugih šibkih omejitev, ki se jim je smiselno posvetiti. Nikomur najbrž ne
 bi bilo preveč všeč, če bi uram športne vzgoje sledila še vrsta predavanj, saj bi tako
 prepoteni in izčrpani študentje težko sledili tempu pouka.
@@ -217,7 +229,7 @@ najpomembnejšim šibkim omejitvam. Dobro zasnovan algoritem pa lahko preverja v
 število šibkih omejitev, zato snovalci programov prav temu posvečajo ogromno pozornosti,
 saj bo njihov končni produkt le tako zadovoljil profesorje in študente.
 
-Merjenje kakovosti % podrazdelek
+\subsection{Merjenje kakovosti} % podrazdelek
 
 Kakovost urnika se meri z zadoščanjem šibkim omejitvam, pri čemer že predpostavljamo
 zadostnost urnika (zadoščanje strogim omejitvam). Ta način je smiseln predvsem zato,
@@ -240,7 +252,7 @@ sprejet s strani večine, pa bi se povečala.
 
 Kot zanimivost naj omenimo, da se nekateri programerji odločajo tudi za utežitev strogih
 omejitev s to razliko, da so vrednosti teh uteži izjemno velike, zato se bo algoritem
-(skoraj) vedno "odločil", da jih ne bo prekršil. Tak način uteževanja pride v poštev
+(skoraj) vedno ">odločil"<, da jih ne bo prekršil. Tak način uteževanja pride v poštev
 takrat, ko algoritem v osnovi ne zadosti strogim omejitvam urnika.
 
 Ko enkrat ustrezno nastavimo vrednosti uteži, je treba ugotoviti, kako bomo postopali
@@ -258,7 +270,7 @@ V 2. poglavju bomo opisali postopek gradnje urnika, saj bomo podrobneje spoznali
 operacije nad urnikom in več vrst optimizacijskih metod, ki jih lahko brez oklevanja
 poimenujemo kar osrčje programa za avtomatizirano izdelavo urnika.
 
-Avtomatizirana izdelava urnika % razdelek
+\section{Avtomatizirana izdelava urnika} % razdelek
 
 V 1. poglavju smo izvedeli, da ročna izdela urnikov ni tako preprosta, kot bi si
 na prvi pogled predstavljali. Še večji izziv predstavlja implementacija algoritma, ki da
@@ -269,8 +281,8 @@ nato iz njih izdela celovit urnik. Te vhodne podatke smo si skupaj s strogimi in
 omejitvami že podrobneje ogledali v prvem delu, tako da se lahko tokrat osredotočimo na
 osrčje programa.
 
-Za lažjo ilustracijo bi lahko potegnili kar nekaj vzporednic med programiranjem in - ne
-boste verjeli - kuhanjem. Za kuhanje potrebujemo recept, ki je sestavljen iz dveh delov.
+Za lažjo ilustracijo bi lahko potegnili kar nekaj vzporednic med programiranjem in -- ne
+boste verjeli -- kuhanjem. Za kuhanje potrebujemo recept, ki je sestavljen iz dveh delov.
 Prvi del predstavljajo sestavine, ki jih potrebujemo za kuhanje, glavni del pa predstavlja
 postopek, kako iz teh sestavin pripraviti okusno kosilo. Postopki kuhe se med seboj
 razlikujejo in nekateri pripeljejo do nekoliko slastnejšega obroka kot drugi.
@@ -288,7 +300,7 @@ profesorja, ki predmet predava, ter skupin, ki jim je predmet namenjen. Srečanj
 vstavljena v termine predavalnic, tako da se za vsako srečanje ve, ob kateri uri in v
 kateri predavalnici se bo izvajalo.
 
-Požrešna metoda % podrazdelek
+\subsection{Požrešna metoda} % podrazdelek
 
 Požrešna metoda je ena izmed strategij, s katerimi lahko rešujemo optimizacijske probleme -
 to pomeni, da za dani problem iščemo najboljšo (optimalno) rešitev. Metoda na vsakem koraku
@@ -309,14 +321,14 @@ Naslednje vrstice bodo pojasnile, kako implementirati postopek požrešne metode
 % začetek okolja verbatim
 \begin{verbatim}
    (1) Sprehod po vseh predmetih.
-{
-   (2) Sprehod po vseh predavalnicah.
    {
-      (3) Računanje cene za proste termine.
-      (4) Primerjava cene z najboljšo.
+      (2) Sprehod po vseh predavalnicah.
+      {
+         (3) Računanje cene za proste termine.
+         (4) Primerjava cene z najboljšo.
+      }
+      (5) Vstavljanje srečanja v urnik.
    }
-   (5) Vstavljanje srečanja v urnik.
-}
 \end{verbatim}
 
 % konec okolja verbatim
@@ -324,6 +336,7 @@ Naslednje vrstice bodo pojasnile, kako implementirati postopek požrešne metode
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Zgoraj predstavljena shema je le grob opis postopka, ki ga nad urnikom izvaja požrešna metoda,
 zato si je smiselno podrobneje ogledati posamezne korake.
 
@@ -349,7 +362,7 @@ zato si je smiselno podrobneje ogledati posamezne korake.
    predmet. Postopek ponavljamo, dokler se zunanja zanka, ki se sprehaja po vseh predmetih,
    ne zaključi. S tem smo namreč v urnik vstavili vse predmete.
 
-Optimizacijske metode % podrazdelek
+\subsection{Optimizacijske metode} % podrazdelek
 
 Optimizacijske metode se že desetletja uporabljajo za reševanje optimizacijskih problemov.
 Nekatere manj, druge bolj uspešno rešujejo zapletene probleme, pri čemer je eksponentno
@@ -363,14 +376,18 @@ Na primeru urnika si oglejmo, katere so smiselne operacije:
 
 % Vsaka od vrstic v okolju `itemize` je en element naštevanja.
 % začetek okolja itemize
-   /Vstavljanje/ srečanja v urnik.
-   /Brisanje/ srečanja iz urnika.
-   /Zamenjava/ dveh srečanj v urnik.
+\begin{itemize}
+   \item /Vstavljanje/ srečanja v urnik.
+   \item /Brisanje/ srečanja iz urnika.
+   \item /Zamenjava/ dveh srečanj v urnik.
+\end{itemize}
+  
 % konec okolja itemize
 
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 /Okolica/ operacije je množica vseh možnih sprememb, ki jih lahko s to operacijo
 opravimo na nekem koraku optimizacijskega postopka. Okolica zamenjave dveh srečanj v urniku
 je torej množica vseh možnih zamenjav srečanj v trenutnem urniku.
@@ -379,7 +396,7 @@ je torej množica vseh možnih zamenjav srečanj v trenutnem urniku.
 okolic sistema opravimo na nekem koraku optimizacijskega postopka. Oboroženi z novimi pojmi
 se podajmo v naslednje vrstice.
 
-Lokalno vzpenjanje % podpodrazdelek
+\subsubsection{Lokalno vzpenjanje} % podpodrazdelek
 
 Lokalno vzpenjanje temelji na opazkah, da izbira širšega sistema okolic prinaša kakovostnejše
 rešitve. Sistem okolic v primeru urnika predstavljajo prej omenjene operacije vstavljanja,
@@ -394,7 +411,7 @@ Nadgradnja lokalnega vzpenjanja je jasno razvidna iz naslednje sheme.
 
 % začetek okolja verbatim
 \begin{verbatim}
-   (1) Izvajaj dokler...
+(1) Izvajaj dokler...
 {
    (2) Iz sistema okolic izberi okolico.
    (3) Iz okolice izberi spremembo.
@@ -407,33 +424,37 @@ Nadgradnja lokalnega vzpenjanja je jasno razvidna iz naslednje sheme.
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Nadobudnežem priporočamo, da najprej sami razmislijo, kaj je globja vsebina posameznih
 korakov, in si šele nato ogledajo njihov natančen opis.
 
 % začetek okolja enumerate
-   Zunanjo zanko izvajamo, dokler ne dosežemo enega izmed ustavitvenih pogojev.
+\begin{enumerate}
+   \item Zunanjo zanko izvajamo, dokler ne dosežemo enega izmed ustavitvenih pogojev.
    Če nekaj časa kljub spreminjanju operacij nad urnikom vedno znova obstojimo na isti
    rešitvi, potem to najverjetneje pomeni, da smo prišli do lokalnega ekstrema. Drugi
    ustavitveni pogoj je zadovoljivo velika vrednost kriterijske funkcije.
 
-   Naključno izberemo okolico trenutne rešitve. Z okolico izberemo tudi operacijo,
+   \item Naključno izberemo okolico trenutne rešitve. Z okolico izberemo tudi operacijo,
    ki jo izvajamo na tem koraku (npr. zamenjava dveh srečanj).
 
-   Če v tem koraku izberemo tisto zamenjavo srečanj, ki izmed vseh možnih najbolj
+   \item Če v tem koraku izberemo tisto zamenjavo srečanj, ki izmed vseh možnih najbolj
    poveča vrednost kriterijske funkcije, potem postopamo enako, kot požrešna metoda. Če
    želimo nadgraditi postopek lokalnega vzpenjanja, ne potrebujemo nujno najboljše možne
    zamenjave, ampak prvo, ki poveča vrednost kriterijske funkcije. Izjemoma dovolimo tudi
    tisto zamenjavo, ki vrednost kriterijske funkcije nekoliko zmanjša, kar se na prvi
    pogled zdi nesmiselno, nas pa dolgoročno pripelje do boljših rešitev.
 
-   Izbrano zamenjavo dveh srečanj izvedemo na trenutnem urniku. Vidimo, da en korak
+   \item Izbrano zamenjavo dveh srečanj izvedemo na trenutnem urniku. Vidimo, da en korak
    lokalnega vzpenjanja res predstavlja eno spremembo nad urnikom, v konkretnem primeru
    smo izvedli (eno) zamenjavo dveh srečanj.
+\end{enumerate}
 % konec okolja enumerate
 
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 Na tak način izboljšana metoda lokalnega vzpenjanja je časovno veliko zahtevnejša od
 požrešne metode, saj se vrednost kriterijske funkcije ne povečuje tako drastično. Vseeno
 pa vidimo, da se počasi približujemo lokalnemu maksimumu in sčasoma nas bo postopek
@@ -441,20 +462,20 @@ pripeljal do njega. Naključna izbira okolic ter sprejemanje ne nujno najboljše
 nas varujeta, da ne bomo obstali v prvem lokalnem maksimumu, ampak bomo vedno znova
 iskali boljše rešitve.
 
-Slabost do sedaj obravnavanih tehnik še vedno ostaja - ko enkrat obtičimo v lokalnem
+Slabost do sedaj obravnavanih tehnik še vedno ostaja -- ko enkrat obtičimo v lokalnem
 maksimumu, se iz njega ne moremo rešiti. Naslednja metoda poskuša na svojevrsten, a zelo
 sistematičen način odpraviti to težavo.
 
-Iskanje s tabuji % podpodrazdelek
+\subsubsection{Iskanje s tabuji} % podpodrazdelek
 
 Že samo ime spominja na prepovedi, ki jih le-ta skriva v svojem naročju. Kaj sploh prepovedujemo?
 Glede na to, da bi naj iskanje s tabuji odpravilo problem vračanja v isti lokalni maksimum,
 prepovedujemo izvajanje sprememb, s katerimi bi se vrnili v že najden lokalni maksimum.
 
-Rešitev se ponuja kar sama - za naslednjih ?? korakov prepovemo vsako spremembo, ki jo
+Rešitev se ponuja kar sama -- za naslednjih ?? korakov prepovemo vsako spremembo, ki jo
 opravimo v koraku optimizacije. Izbira konstante ?? je odvisna od samega problema, saj
 ne obstaja neki splošen ??, ki bi nas v vsakem primeru pripeljal iz lokalnega ekstrema.
-Imamo torej seznam prepovedanih sprememb - /tabujev/ in na vsakem koraku za izbrano
+Imamo torej seznam prepovedanih sprememb -- /tabujev/ in na vsakem koraku za izbrano
 spremembo preverimo, če je element seznama tabujev. Če spremembe ni v seznamu tabujev, jo
 preprosto izvedemo, v primeru, da je, pa postopek vrnemo na iskanje druge spremembe.
 Algoritem iskanja s tabuji se od lokalnega vzpenjanja torej razlikuje le v tem, da pred
@@ -473,7 +494,7 @@ prepovedanih sprememb.
 rešiti iz okolice tega lokalnega maksimuma, potem se je metoda iskanja s tabuji izkazala
 kot uspešna.
 
-Končni algoritem % podrazdelek
+\subsection{Končni algoritem} % podrazdelek
 
 Za konec si oglejmo, kako je videti optimizacijski del algoritma za iskanje najboljšega
 urnika, pri čemer je najboljši urnik tisti, ki s kršenjem omejitev pridobi najmanj negativnih
@@ -481,7 +502,7 @@ točk, oziroma ki ima največjo vrednost kriterijske funkcije.
 
 % začetek okolja verbatim
 \begin{verbatim}
-   (1) r = rešitev, dobljena s požrešno metodo.
+(1) r = rešitev, dobljena s požrešno metodo.
 (2) Izvajaj, dokler...
 {
    (3) Z optimizacijo izboljšaj r.
@@ -490,33 +511,35 @@ točk, oziroma ki ima največjo vrednost kriterijske funkcije.
 \end{verbatim}
 
 % začetek okolja verbatims
+\begin{enumerate}
+   \item V prvem koraku izvedemo požrešno metodo, ki rešitev urnika pripelje v lokalni maksimum.
 
-   V prvem koraku izvedemo požrešno metodo, ki rešitev urnika pripelje v lokalni maksimum.
+   \item Zanko izvajamo, dokler ne dosežemo enega izmed ustavitvenih pogojev.
 
-   Zanko izvajamo, dokler ne dosežemo enega izmed ustavitvenih pogojev.
-
-   Rešitev ??, ki smo jo dobili s pomočjo požrešne metode, izboljšamo z lokalnim vzpenjanjem
+   \item Rešitev ??, ki smo jo dobili s pomočjo požrešne metode, izboljšamo z lokalnim vzpenjanjem
    ali iskanjem s tabuji. Kot je že bilo povedano, je iskanje s tabuji nekoliko primernejša metoda,
    saj nas bo lažje pripeljala iz lokalnega maksimuma, do katerega smo prišli s požrešno metodo.
    Vsekakor pa ni nič narobe, če srečo poskusimo tudi z lokalnim vzpenjanjem.
 
-   Na vsakem koraku ocenimo izboljšamo rešitev ??. Če je vrednost kriterijske funkcije
+   \item Na vsakem koraku ocenimo izboljšamo rešitev ??. Če je vrednost kriterijske funkcije
    za trenutno rešitev prešla zastavljeno zadovoljivo mejo, potem se program zaključi. Prav tako
    se zaključi, če po ?? korakih še vedno tičimo v istem lokalnem maksimumu.
 
+\end{enumerate}
 % Spodnja vrstica ne začne novega odstavka, zato ne bi smela biti zamaknjena.
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+\noindent
 To je le ena izmed možnosti, kako zastaviti optimizacijski potek, s katero smo želeli predstaviti
 simbiozo opisanih metod. Nič ne bi bilo narobe, če bi za iskanje najboljšega urnika posamično
-uporabili katero izmed tehnik - mogoče bi katero izmed teh postopanj dalo celo boljši rezultat.
+uporabili katero izmed tehnik -- mogoče bi katero izmed teh postopanj dalo celo boljši rezultat.
 
-Zaključek % podrazdelek
+\subsection{Zaključek} % podrazdelek
 
 % V spodnjem odstavku naj bodo črke G, U in I v "Graphical User Interface" podčrtane.
-Sledili smo receptu in s tem izdelali "okusen obrok", treba ga je le še ustrezno postreči
-gostom za mizo. S tem imamo v mislih grafični uporabniški vmesnik (Graphical
-User Interface), ki mora urnik uporabnikom predstaviti na razumljiv in
+Sledili smo receptu in s tem izdelali ">okusen obrok"<, treba ga je le še ustrezno postreči
+gostom za mizo. S tem imamo v mislih grafični uporabniški vmesnik (\underline{G}raphical
+\underline{U}ser \underline{I}nterface), ki mora urnik uporabnikom predstaviti na razumljiv in
 pregleden način. Končnega izgleda izdelka nikakor ne smemo zanemariti, saj je ta med uporabniki
 vreden skoraj toliko kot kakovosten urnik. Odločili smo se, da za razmišljanje o tej temi vaši
 domišljiji pustimo prosto pot.

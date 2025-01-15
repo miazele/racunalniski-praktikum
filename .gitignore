@@ -1,0 +1,25 @@
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.toc
+*.fls
+*.log
+*.out
+*.pdf
+*.pyc
+*.synctex.gz
+
+# VSCode uporabniške nastavitve
+.vscode/
+
+# MacOS
+__MACOSX
+.DS_Store
+
+# Windows
+thumbs.db
+
+# Python
+__pycache__
