@@ -43,12 +43,12 @@ h2 {
     border-top: solid;
     padding-top: 0.5em;
 }
-
+/* za id */
 #uvod {
     padding: 2em;
     background-color: rgb(51, 0, 102, 0.1);
 }
-
+/* za razrede, class */
 .slika {
     font-size: 0.9em;
     width: 40%;
@@ -59,11 +59,18 @@ h2 {
 
 .slika p:last-child {
     font-size: 0.8em;
+    margin-top: 0.3em;
 }
     
-
+/* gnezdenje */
 .slika img {
     width: 100%;
     height: auto;
     border-radius: 50%;
 }
+
+/* div {
+    border-width: 10px;
+    border-color: #00cc33;
+    border-style: solid;
+} */
